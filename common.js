@@ -10,6 +10,16 @@ function paceValidate (pace) {
 	}
 }
 
+function paceCa(pace,dist)
+{
+	var min = dist * pace;
+		var hour = 0;
+		if(min > 60){
+			hour = Math.floor(min / 60);          
+			min = min % 60;
+		}
+		return {"min" :min, "hour" :hour};
+}
 
 function calculate(p,d){
 		var msg = "";
@@ -19,12 +29,8 @@ function calculate(p,d){
 	var chk = paceValidate(pace)
 	if (chk != null) return chk;
 	//---------------------------
-		var min = dist * pace;
-		var hour = 0;
-		if(min > 60){
-			hour = Math.floor(min / 60);          
-			min = min % 60;
-		}
+	var pc = paceCa(pace,dist);
+
 	//---------------------------
 		msg = "successfully calculated!"
 		return {"status":1,"message":msg,"hour":hour,"min":min};
